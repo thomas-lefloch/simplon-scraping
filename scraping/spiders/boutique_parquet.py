@@ -1,6 +1,9 @@
 import scrapy
 from urllib.parse import urlparse
 
+from scraping.items.item_categories import ItemCategories
+
+
 class BoutiqueParquetSpider(scrapy.Spider):
     name = "boutique-parquet"
     allowed_domains = ["boutique-parquet.com"]
@@ -12,26 +15,27 @@ class BoutiqueParquetSpider(scrapy.Spider):
         return urlparse(url).path
 
     def parse_upper_categories(self, response):
-        upper_categories = response.css(f'{self.menu_id} li.level0 > a')
+        upper_categories = response.css(f"{self.menu_id} li.level0 > a")
         for category in upper_categories:
-            yield {
-                'id': self.extract_id_from_url(category.attrib['href']),
-                'name': category.css('span::text').get()
-            }
+            yield ItemCategories(
+                {
+                    "id": self.extract_id_from_url(category.attrib["href"]),
+                    "name": category.css("span::text").get(),
+                    "page_list": "",
+                }
+            )
 
     def parse_sub_categories(self, response):
-        sub_categories = response.css(f'{self.menu_id} li.level1 > a')
+        sub_categories = response.css(f"{self.menu_id} li.level1 > a")
         for category in sub_categories:
-            yield {
-                'id': self.extract_id_from_url(category.attrib['href']),
-                'name': category.css('span::text').get(),
-                'page_list': category.attrib['href']
-            }
+            yield ItemCategories(
+                {
+                    "id": self.extract_id_from_url(category.attrib["href"]),
+                    "name": category.css("span::text").get(),
+                    "page_list": category.attrib["href"],
+                }
+            )
 
-    def parse(self, response): 
+    def parse(self, response):
         yield from self.parse_upper_categories(response)
         yield from self.parse_sub_categories(response)
-    
-
-
-        
