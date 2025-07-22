@@ -1,5 +1,5 @@
 import scrapy
-
+from urllib.parse import urlparse
 
 class BoutiqueParquetSpider(scrapy.Spider):
     name = "boutique-parquet"
@@ -8,19 +8,24 @@ class BoutiqueParquetSpider(scrapy.Spider):
 
     menu_id = "#header-menu-all-product"
 
-    def parse_sub_categories(self, response):
-        sub_categories = response.css(f'{self.menu_id} li.level1 > a')
-        for category in sub_categories:
-            yield {
-                'name': category.css('span::text').get(),
-                'page_list': category.attrib['href']
-            }
-    
+    def extract_id_from_url(self, url):
+        return urlparse(url).path
+
     def parse_upper_categories(self, response):
         upper_categories = response.css(f'{self.menu_id} li.level0 > a')
         for category in upper_categories:
             yield {
+                'id': self.extract_id_from_url(category.attrib['href']),
                 'name': category.css('span::text').get()
+            }
+
+    def parse_sub_categories(self, response):
+        sub_categories = response.css(f'{self.menu_id} li.level1 > a')
+        for category in sub_categories:
+            yield {
+                'id': self.extract_id_from_url(category.attrib['href']),
+                'name': category.css('span::text').get(),
+                'page_list': category.attrib['href']
             }
 
     def parse(self, response): 
