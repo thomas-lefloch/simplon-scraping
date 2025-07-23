@@ -3,7 +3,6 @@ from urllib.parse import urlparse
 
 from scraping.items.item_categories import ItemCategories
 
-
 class BoutiqueParquetSpider(scrapy.Spider):
     name = "boutique-parquet"
     allowed_domains = ["boutique-parquet.com"]
@@ -39,3 +38,6 @@ class BoutiqueParquetSpider(scrapy.Spider):
     def parse(self, response):
         yield from self.parse_upper_categories(response)
         yield from self.parse_sub_categories(response)
+        yield ItemCategories({"id": "test","name": "", "page_list": ""})
+        yield ItemCategories({"name": "testID", "page_list": ""})
+
