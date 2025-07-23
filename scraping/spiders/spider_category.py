@@ -3,8 +3,8 @@ from urllib.parse import urlparse
 
 from scraping.items.item_categories import ItemCategories
 
-class BoutiqueParquetSpider(scrapy.Spider):
-    name = "boutique-parquet"
+class CategorySpider(scrapy.Spider):
+    name = "categories"
     allowed_domains = ["boutique-parquet.com"]
     start_urls = ["https://boutique-parquet.com"]
 
