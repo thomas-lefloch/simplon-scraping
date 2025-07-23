@@ -13,12 +13,3 @@ class ScrapingPipeline:
     def process_item(self, item, spider):
         return item
 
-class FilterCategoryPipeline:
-    def process_item(self, item, spider):
-        adapter = ItemAdapter(item)
-        category_id = adapter.get("id", "")
-
-        if category_id.startswith("/marque"):
-            raise scrapy.exceptions.DropItem(f"Catégorie exclue : {category_id}")
-        
-        return item
