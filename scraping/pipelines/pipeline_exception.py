@@ -2,6 +2,18 @@ from itemadapter import ItemAdapter
 from scrapy.exceptions import DropItem
 
 
+class StripDataPipeline:
+    def process_item(self, item, spider):
+        adapter = ItemAdapter(item)
+
+        for field_name, raw_data in adapter.items():
+            if isinstance(raw_data, str):
+                # Normalement à ce stade, toutes les données sont encore des str, mais...
+                adapter[field_name] = raw_data.strip()
+
+        return item
+
+
 class RequiredDataPipeline:
     def process_item(self, item, spider):
         adapter = ItemAdapter(item)
@@ -14,10 +26,9 @@ class RequiredDataPipeline:
 
         for field_name in required_fields:
             if field_name not in adapter or not adapter[field_name]:
-                spider.logger.warning(
+                raise DropItem(
                     f"[Info] Champ '{field_name}' manquant ou vide : {adapter}"
                 )
-                raise DropItem(f"Missing {field_name}")
 
         return item
 
@@ -35,7 +46,10 @@ class TypeDataPipeline:
                     adapter[field_name] = value_type(raw_value)
                 except (ValueError, TypeError) as e:
                     raise DropItem(
-                        f"Champ '{field_name}' : impossible de convertir '{raw_value}' en {value_type.__name__}"
+                        f"[Info] Champ '{field_name}' : impossible de convertir '{raw_value}' en {value_type.__name__}"
                     )
+
+            if value_type == float and isinstance(adapter[field_name], float):
+                adapter[field_name] = f"{adapter[field_name]:.2f}"
 
         return item
