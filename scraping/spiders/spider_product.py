@@ -22,8 +22,13 @@ def clean_unit(raw):
 class ProductSpider(scrapy.Spider):
     name = "products"
     allowed_domains = ["boutique-parquet.com"]
-    start_urls = ["https://boutique-parquet.com/parquets/parquets-contrecolles-classiques"]
-    
+
+    def __init__(self, urls=None, *args, **kwargs):
+        if not urls:
+            raise AttributeError("Url missing")
+        self.start_urls = urls
+        super(ProductSpider, self).__init__(*args, **kwargs)
+
     def parse_products(self, response):
         
         sku_map = {}  # Dictionnaire pour récupérer les URL à leur SKU
@@ -65,7 +70,7 @@ class ProductSpider(scrapy.Spider):
             url = product.css("a.product-item-link::attr(href)").get().strip()
             id = sku_map.get(url.strip(), "")
             image = product.css("img.product-image-photo::attr(src)").get()
-            category_id = "/parquets/parquets-massifs-exotiques"
+            category_id = urlparse(response.request.url).path
 
             yield ItemProducts(
                     {
@@ -85,6 +90,6 @@ class ProductSpider(scrapy.Spider):
             next_page = response.css("a.action.next::attr(href)").get()
             if next_page:
                 yield response.follow(next_page, callback=self.parse)
-        
+
     def parse(self, response):
         yield from self.parse_products(response)
