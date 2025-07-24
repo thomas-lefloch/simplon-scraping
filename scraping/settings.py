@@ -59,10 +59,9 @@ DOWNLOAD_DELAY = 1
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-    'scraping.pipelines.pipeline_exception.MissingIDPipeline': 50,
-    'scraping.pipelines.pipeline_exception.MissingNamePipeline': 50,
+    "scraping.pipelines.pipeline_exception.RequiredDataPipeline": 50,
     "scraping.pipelines.pipelines.ScrapingPipeline": 300,
-    'scraping.pipelines.pipeline_filter.FilterCategoryPipeline': 100,
+    "scraping.pipelines.pipeline_filter.FilterCategoryPipeline": 100,
     "scraping.pipelines.pipeline_csv.CsvWriterPipeline": 1000,
 }
 
