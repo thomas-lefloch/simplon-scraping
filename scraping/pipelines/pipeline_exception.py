@@ -20,3 +20,22 @@ class RequiredDataPipeline:
                 raise DropItem(f"Missing {field_name}")
 
         return item
+
+
+class TypeDataPipeline:
+    def process_item(self, item, spider):
+        adapter = ItemAdapter(item)
+
+        for field_name, field in item.fields.items():
+            value_type = field.get("value_type", str)
+            raw_value = adapter[field_name]
+
+            if not isinstance(raw_value, value_type):
+                try:
+                    adapter[field_name] = value_type(raw_value)
+                except (ValueError, TypeError) as e:
+                    raise DropItem(
+                        f"Champ '{field_name}' : impossible de convertir '{raw_value}' en {value_type.__name__}"
+                    )
+
+        return item
