@@ -25,7 +25,11 @@ class RequiredDataPipeline:
                 required_fields.append(field_name)
 
         for field_name in required_fields:
-            if field_name not in adapter or not adapter[field_name]:
+            if (
+                field_name not in adapter
+                or not adapter[field_name]
+                or adapter[field_name] is None
+            ):
                 raise DropItem(
                     f"[Info] Champ '{field_name}' manquant ou vide : {adapter}"
                 )
