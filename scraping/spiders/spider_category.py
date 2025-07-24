@@ -12,13 +12,20 @@ class CategorySpider(scrapy.Spider):
 
     def extract_id_from_url(self, url):
         return urlparse(url).path
+    
+    def filter_category(self, category_id) : 
+        # D'apres notre analyse sur le site, on a remarqué que les produits présent sur les marques apparaissent deja dans d'autres catégories
+        if category_id.startswith("/marque"):
+            self.logger.info(f"Catégorie exclue : {category_id}")
+            return None
+        return category_id
 
     def parse_upper_categories(self, response):
         upper_categories = response.css(f"{self.menu_id} li.level0 > a")
         for category in upper_categories:
             yield ItemCategories(
                 {
-                    "id": self.extract_id_from_url(category.attrib["href"]),
+                    "id": self.filter_category(self.extract_id_from_url(category.attrib["href"])),
                     "name": category.css("span::text").get(),
                     "page_list": "",
                 }
@@ -29,7 +36,7 @@ class CategorySpider(scrapy.Spider):
         for category in sub_categories:
             yield ItemCategories(
                 {
-                    "id": self.extract_id_from_url(category.attrib["href"]),
+                    "id": self.filter_category(self.extract_id_from_url(category.attrib["href"])),
                     "name": category.css("span::text").get(),
                     "page_list": category.attrib["href"],
                 }

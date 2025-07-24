@@ -62,7 +62,6 @@ ITEM_PIPELINES = {
     "scraping.pipelines.pipeline_exception.RequiredDataPipeline": 50,
     "scraping.pipelines.pipeline_exception.TypeDataPipeline": 51,
     "scraping.pipelines.pipelines.ScrapingPipeline": 300,
-    'scraping.pipelines.pipeline_filter.FilterCategoryPipeline': 100,
     'scraping.pipelines.pipeline_duplicates.DuplicatesPipeline': 500,
     "scraping.pipelines.pipeline_csv.CsvWriterPipeline": 1000,
 }
