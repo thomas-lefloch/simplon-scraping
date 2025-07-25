@@ -2,19 +2,19 @@
 
 Bienvenue sur notre version d'un projet de scraping dans le cadre d'une formation **Data Engineering Simplon 2025**.
 
-Notre mission est de collecter les données d'un site de bricolage à des fins d'analyse.
+Notre mission est de collecter les données d'un site de bricolage à des fins d'analyse.  
 
 
 # 🎬 Mise en situation
 
-Votre nouveau client, BricoSimplon, est un grand site de e-commerce spécialisé dans le bricolage et l'aménagement de la maison. Face à une concurrence accrue, BricoSimplon souhaite optimiser sa politique tarifaire pour rester compétitif et fidéliser sa clientèle. Pour ce faire, ils ont besoin de connaître en temps réel les tarifs pratiqués par leurs principaux concurrents.
+Votre nouveau client, BricoSimplon, est un grand site de e-commerce spécialisé dans le bricolage et l'aménagement de la maison. Face à une concurrence accrue, BricoSimplon souhaite optimiser sa politique tarifaire pour rester compétitif et fidéliser sa clientèle. Pour ce faire, ils ont besoin de connaître en temps réel les tarifs pratiqués par leurs principaux concurrents.  
 
 
 # 📌 Description du projet
 
 - Concevoir et développer un système de scraping capable de collecter les données tarifaires sur une large gamme de produits.
 - Assurer la conformité légale et éthique du processus de collecte, en respectant les conditions d'utilisation des sites web ciblés et en mettant en place des mesures pour éviter toute intrusion ou surcharge des serveurs.
-- Nettoyer et structurer les données collectées pour garantir leur qualité et leur fiabilité.
+- Nettoyer et structurer les données collectées pour garantir leur qualité et leur fiabilité.  
 
 
 ## 🛠️ Technologies Utilisées  
@@ -32,11 +32,11 @@ Votre nouveau client, BricoSimplon, est un grand site de e-commerce spécialisé
 git clone https://github.com/thomas-lefloch/simplon-scraping.git
 cd simplon-scraping
 pip install -r requirements.txt
-```
+```  
 
 ## ⚙️ Configuration
 
-La configuration du projet se fait via scraping/settings.py
+La configuration du projet se fait via scraping/settings.py  
 
 
 ## 🧪 Comment lancer
@@ -52,7 +52,7 @@ Deux fichiers csv seront crées (ils seront écrasé s'ils existent déjà):
 ```categories.csv```: contient toutes les catégories.  
 ```products.csv```: contient tous les produits.  
 
-Pour modifier le nom de ces fichiers vous devez modifier le nom des spiders.
+Pour modifier le nom de ces fichiers vous devez modifier le nom des spiders.  
 
 ## 🔢 Structure des fichiers csv créés
 
@@ -75,13 +75,13 @@ vat_included (obligatoire) : Indique si le prix inclut la TVA — (obligatoire).
 unit (facultatif) : Unité de mesure (ex : m², kg, unité, ml).
 url (obligatoire) : URL de la page du produit (obligatoire).
 category_id (obligatoire) : Identifiant de la catégorie associée.
-image (facultatif) : URL de l'image du produit.
+image (facultatif) : URL de l'image du produit.  
 
 
 ## 📜 License
 
 This project is licensed under the MIT License ©️ 2025.  
-You are free to use, modify, and distribute this project with proper attribution.
+You are free to use, modify, and distribute this project with proper attribution.  
 
 
 ## 👥 Team
