@@ -5,6 +5,11 @@ Bienvenue sur notre version d'un projet de scraping dans le cadre d'une formatio
 Notre mission est de collecter les données d'un site de bricolage à des fins d'analyse.
 
 
+# 🎬 Mise en situation
+
+Votre nouveau client, BricoSimplon, est un grand site de e-commerce spécialisé dans le bricolage et l'aménagement de la maison. Face à une concurrence accrue, BricoSimplon souhaite optimiser sa politique tarifaire pour rester compétitif et fidéliser sa clientèle. Pour ce faire, ils ont besoin de connaître en temps réel les tarifs pratiqués par leurs principaux concurrents.
+
+
 # 📌 Description du projet
 
 - Concevoir et développer un système de scraping capable de collecter les données tarifaires sur une large gamme de produits.
@@ -31,7 +36,7 @@ pip install -r requirements.txt
 
 ## ⚙️ Configuration
 
-La configuration du projet se fait via settings.py
+La configuration du projet se fait via scraping/settings.py
 
 
 ## 🧪 Comment lancer
@@ -41,6 +46,30 @@ Une fois les dépendences installées et la configuration validée, vous pouvez 
 ```bash
 python scrap_all.py 
 ```
+
+## 🔢 Structure des fichiers csv créés
+
+### categories.csv
+Fichier d'extraction des catégories filtrées sur le site.
+
+id (obligatoire): identifiant de la catégorie  
+name (obligatoire): nom de la catégorie  
+page_list (facultatif): url de la catégorie si celle-ci contient des produits  
+
+
+### produits.csv
+Fichier d'extraction des produits filtrés sur le site.
+
+id (obligatoire) : Identifiant unique du produit qui est le SKU (obligatoire).
+name (obligatoire) : Nom du produit (obligatoire).
+base_price (facultatif) : Prix initial (hors promotion), en euros.
+price (obligatoire) : Prix actuel du produit (avec ou sans promotion), en euros (obligatoire).
+vat_included (obligatoire) : Indique si le prix inclut la TVA — (obligatoire).
+unit (facultatif) : Unité de mesure (ex : m², kg, unité, ml).
+url (obligatoire) : URL de la page du produit (obligatoire).
+category_id (obligatoire) : Identifiant de la catégorie associée.
+image (facultatif) : URL de l'image du produit.
+
 
 ## 📜 License
 

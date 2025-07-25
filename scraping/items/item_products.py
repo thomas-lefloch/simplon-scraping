@@ -17,12 +17,13 @@ class ItemProducts(scrapy.Item):
         category_id (str) : Identifiant de la catégorie associée.
         image (str) : URL de l'image du produit.
     """
-    id = Field(required=True)  
+
+    id = Field(required=True)
     name = Field(required=True)
-    base_price = Field(value_type=float)  
-    price = Field(required=True, value_type=float)  
-    vat_included = Field(required=True, value_type=bool)  
-    unit = Field()  
+    base_price = Field(value_type=float)
+    price = Field(required=True, value_type=float)
+    vat_included = Field(required=True, value_type=bool)
+    unit = Field()
     url = Field(required=True)
-    category_id = Field()
+    category_id = Field(required=True)
     image = Field()
