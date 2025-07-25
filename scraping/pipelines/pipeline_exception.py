@@ -53,6 +53,8 @@ class TypeDataPipeline:
                         f"[Info] Champ '{field_name}' : impossible de convertir '{raw_value}' en {value_type.__name__}"
                     )
 
+            # Temporaire pour sortie dan fichier de type texte (csv)
+            # Formattage des floats avec 2 chiffres après le .
             if value_type == float and isinstance(adapter[field_name], float):
                 adapter[field_name] = f"{adapter[field_name]:.2f}"
 
