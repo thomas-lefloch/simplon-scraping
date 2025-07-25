@@ -67,15 +67,15 @@ page_list (facultatif): url de la catégorie si celle-ci contient des produits
 ### produits.csv
 Fichier d'extraction des produits filtrés sur le site.
 
-id (obligatoire) : Identifiant unique du produit qui est le SKU (obligatoire).
-name (obligatoire) : Nom du produit (obligatoire).
-base_price (facultatif) : Prix initial (hors promotion), en euros.
-price (obligatoire) : Prix actuel du produit (avec ou sans promotion), en euros (obligatoire).
-vat_included (obligatoire) : Indique si le prix inclut la TVA — (obligatoire).
-unit (facultatif) : Unité de mesure (ex : m², kg, unité, ml).
-url (obligatoire) : URL de la page du produit (obligatoire).
-category_id (obligatoire) : Identifiant de la catégorie associée.
-image (facultatif) : URL de l'image du produit.  
+id (obligatoire) : Identifiant unique du produit qui est le SKU (obligatoire).  
+name (obligatoire) : Nom du produit (obligatoire).  
+base_price (facultatif) : Prix initial (hors promotion), en euros.  
+price (obligatoire) : Prix actuel du produit (avec ou sans promotion), en euros (obligatoire).  
+vat_included (obligatoire) : Indique si le prix inclut la TVA — (obligatoire).  
+unit (facultatif) : Unité de mesure (ex : m², kg, unité, ml).  
+url (obligatoire) : URL de la page du produit (obligatoire).  
+category_id (obligatoire) : Identifiant de la catégorie associée.  
+image (facultatif) : URL de l'image du produit.    
 
 
 ## 📜 License
