@@ -5,6 +5,40 @@ Bienvenue sur notre version d'un projet de scraping dans le cadre d'une formatio
 Notre mission est de collecter les données d'un site de bricolage à des fins d'analyse.  
 
 
+## 📘 Avertissement (Disclaimer)
+
+Ce dépôt est fourni à des fins exclusivement pédagogiques dans le cadre de monn apprentissage en data engineering.
+Aucune donnée scrappée n’est publiée dans ce dépôt (ni brute, ni agrégée).  
+
+- Je ne suis affilié à aucune des boutiques ou sites mentionnés.  
+
+- Les scripts ont été écrits pour démontrer des compétences techniques (requests, parsing, orchestration, stockage, etc.).Toute personne qui utiliserait ces scripts est seule responsable du respect :  
+
+    - des Conditions Générales d’Utilisation (CGU) et mentions légales des sites ciblés ;  
+
+    -  des fichiers robots.txt  
+
+    -  du RGPD et, plus largement, des lois applicables en matière de protection des données personnelles  
+
+    -  du droit sui generis des bases de données (Code de la propriété intellectuelle, art. L341-1 s.) et de toute autre règle relative à l’extraction/réutilisation de données.  
+
+- Ces scripts ne doivent pas être utilisés pour contourner des mesures techniques de protection, des paywalls, ni pour réaliser une extraction substantielle ou réutilisation non autorisée de bases de données.
+- Sur simple demande documentée d’un ayant droit, je m’engage à retirer ou modifier tout contenu problématique.
+
+Contact retrait / takedown : ouvrir une issue sur ce dépôt ou me contacter à <t.lefloch53@gmail.com>.  
+
+### ❌ Politique de retrait
+Si vous estimez que ce dépôt porte atteinte à vos droits (ex. violation de CGU, extraction substantielle de base de données, atteinte à la vie privée), merci de :  
+
+    - Décrire précisément le contenu en cause (fichiers, lignes, commit).  
+
+    - Indiquer la base légale ou contractuelle invoquée.  
+
+    - Proposer la mesure attendue (suppression, modification, ajout de mention).  
+
+J’examinerai la demande de bonne foi et procéderai rapidement aux ajustements nécessaires.  
+
+
 # 🎬 Mise en situation
 
 Votre nouveau client, BricoSimplon, est un grand site de e-commerce spécialisé dans le bricolage et l'aménagement de la maison. Face à une concurrence accrue, BricoSimplon souhaite optimiser sa politique tarifaire pour rester compétitif et fidéliser sa clientèle. Pour ce faire, ils ont besoin de connaître en temps réel les tarifs pratiqués par leurs principaux concurrents.  
