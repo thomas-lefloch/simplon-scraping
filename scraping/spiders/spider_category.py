@@ -5,6 +5,9 @@ from scraping.items.item_categories import ItemCategories
 
 
 class CategorySpider(scrapy.Spider):
+    """
+    Spider qui extrait les catégories de produits depuis boutique-parquet.com.
+    """
     name = "categories"
     allowed_domains = ["boutique-parquet.com"]
     start_urls = ["https://boutique-parquet.com"]
@@ -21,13 +24,18 @@ class CategorySpider(scrapy.Spider):
         return urlparse(url).path
 
     def filter_category(self, category_id):
-        # D'apres notre analyse sur le site, on a remarqué que les produits présent sur les marques apparaissent deja dans d'autres catégories
+        """
+        Filtre les catégories de marques car les produits apparaissent deja dans d'autres catégories.
+        """
         if category_id.startswith("/marque"):
             self.logger.info(f"Catégorie exclue : {category_id}")
             return ""
         return category_id
 
     def parse_upper_categories(self, response):
+        """ 
+        Extrait les catégories de niveau 0 (principales) depuis le menu.
+        """        
         upper_categories = response.css(f"{self.menu_id} li.level0 > a")
         for category in upper_categories:
             yield ItemCategories(
@@ -41,6 +49,9 @@ class CategorySpider(scrapy.Spider):
             )
 
     def parse_sub_categories(self, response):
+        """
+        Extrait les sous catégories de niveau 1 depuis le menu.
+        """        
         sub_categories = response.css(f"{self.menu_id} li.level1 > a")
         for category in sub_categories:
             yield ItemCategories(

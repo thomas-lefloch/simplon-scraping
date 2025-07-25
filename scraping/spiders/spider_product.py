@@ -6,18 +6,27 @@ from scraping.items.item_products import ItemProducts
 
 
 def clean_price(raw):
-        if raw:
-            return raw.replace("€", "").replace(",", ".")
-        return None
+    """
+    Nettoie le prix  en supprimant le symbole euro et en remplaçant la virgule par un point.
+    Si la valeur est vide ou None, retourne None.
+    """
+    if raw:
+        return raw.replace("€", "").replace(",", ".")
+    return None
     
 def clean_unit(raw):
-        if not raw:
-            return None
-        raw = raw.strip()
-        # Juste "TTC"
-        if raw.upper() == "TTC":
-            return "unité"
-        return  raw.split()[-1]
+    """
+    Nettoie l'unité extraite en supprimant les espaces inutiles.
+    Si la valeur est 'TTC', elle est remplacée par 'unité'.
+    Sinon, renvoie le dernier mot de la chaîne (m^2, kg, ml).
+    """    
+    if not raw:
+        return None
+    raw = raw.strip()
+    # Juste "TTC"
+    if raw.upper() == "TTC":
+        return "unité"
+    return  raw.split()[-1]
     
 class ProductSpider(scrapy.Spider):
     name = "products"
