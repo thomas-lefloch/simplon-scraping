@@ -4,7 +4,7 @@ from scrapy.item import Item, Field
 
 class ItemProducts(scrapy.Item):
     """
-    Représente un produit extrait du site boutique-parquet.com.
+    Représente un produit extrait d'un site.
 
     Attributes:
         id (str) : Identifiant unique du produit qui est le SKU (obligatoire).
