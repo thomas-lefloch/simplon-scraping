@@ -13,9 +13,9 @@ settings = get_project_settings()
 configure_logging(settings)
 runner = CrawlerRunner(settings)
 
-
 @defer.inlineCallbacks
 def crawl():
+    """Scrape les catégories. Puis à partir de celles ci, scrape les listings de produits associés."""
     # on récupère toutes les catégories 
     yield runner.crawl(CategorySpider) 
     
@@ -25,11 +25,13 @@ def crawl():
     _ = next(reader) # on saute l'entête
     page_list_index = 2
     
+    # on récupère l'url de tous les listings de produits
     categories_to_explore = []
     for category in reader:
         if category[page_list_index]:
             categories_to_explore.append(category[page_list_index])
     
+    # on récupère tous les produits à partir de ces listings
     yield runner.crawl(ProductSpider, urls=categories_to_explore)
             
     csv_file.close()
