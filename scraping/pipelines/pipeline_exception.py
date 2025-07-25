@@ -15,6 +15,17 @@ class StripDataPipeline:
 
 
 class RequiredDataPipeline:
+    """
+    Abandonne le traitement de l'objet si un champs requis est manquant.  
+    Vous pouvez définir des champs requis en ajoutant la metadata "required=True"
+    dans la définition de l'item.
+    Exemple:  
+    ```python
+    class ItemCategories(scrapy.Item):  
+        id = Field(required=True)  
+    ```    
+    Raises: DropItem: Si un champs requis est manquant
+    """
     def process_item(self, item, spider):
         adapter = ItemAdapter(item)
 
@@ -38,6 +49,18 @@ class RequiredDataPipeline:
 
 
 class TypeDataPipeline:
+    """
+    Abandonne le traitement de l'objet si un champs ne respecte pas le type définie par la metadata "value_type".  
+    On essaye de convertir la valeur dans ce type avant d'abandonner le traitement.  
+    Vous pouvez définir le type attendu de vos champs en utilisant la metadata "value_type"  
+    dans la définition de l'item.  
+    Exemple:   
+    ```python
+    class ItemProducts(scrapy.Item):
+        base_price = Field(value_type=float) 
+    ```    
+    Raises: DropItem: Si un champs n'est pas conforme au type
+    """
     def process_item(self, item, spider):
         adapter = ItemAdapter(item)
 

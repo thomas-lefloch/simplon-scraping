@@ -16,7 +16,7 @@ ADDONS = {}
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-# USER_AGENT = "scraping (+http://www.yourdomain.com)"
+USER_AGENT = "scraping apprentissage simplon"
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True

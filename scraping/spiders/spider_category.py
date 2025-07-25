@@ -12,6 +12,12 @@ class CategorySpider(scrapy.Spider):
     menu_id = "#header-menu-all-product"
 
     def extract_id_from_url(self, url):
+        """
+        Args:
+            url (str): Un string parsable par urlib.parse
+        Returns: 
+            str: La chemin de l'url
+        """
         return urlparse(url).path
 
     def filter_category(self, category_id):
