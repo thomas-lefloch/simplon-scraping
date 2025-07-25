@@ -3,14 +3,26 @@ from scrapy.item import Item, Field
 
 
 class ItemProducts(scrapy.Item):
-    id = Field(required=True)  # sku
+    """
+    Représente un produit extrait du site boutique-parquet.com.
+
+    Attributes:
+        id (str) : Identifiant unique du produit qui est le SKU (obligatoire).
+        name (str) : Nom du produit (obligatoire).
+        base_price (float) : Prix initial (hors promotion), en euros.
+        price (float) : Prix actuel du produit (avec ou sans promotion), en euros (obligatoire).
+        vat_included (bool) : Indique si le prix inclut la TVA — (obligatoire).
+        unit (str) : Unité de mesure (ex : m², kg, unité, ml).
+        url (str) : URL de la page du produit (obligatoire).
+        category_id (str) : Identifiant de la catégorie associée.
+        image (str) : URL de l'image du produit.
+    """
+    id = Field(required=True)  
     name = Field(required=True)
-    base_price = Field(value_type=float)  # Prix du produit hors promo (en euro)
-    price = Field(required=True, value_type=float)  # Prix actuel du produit (en euro)
-    vat_included = Field(
-        required=True, value_type=bool
-    )  # Booléen qui indique si la TVA est incluse
-    unit = Field()  # Unite (m2 / kg / unité / ml)
+    base_price = Field(value_type=float)  
+    price = Field(required=True, value_type=float)  
+    vat_included = Field(required=True, value_type=bool)  
+    unit = Field()  
     url = Field(required=True)
     category_id = Field()
     image = Field()
