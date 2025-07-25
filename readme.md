@@ -41,6 +41,13 @@ Une fois les dépendences installées et la configuration validée, vous pouvez 
 ```bash
 python scrap_all.py 
 ```
+Ce script scrape les catégories de produits, puis à partir des catégories obtenu scrape les produits associés.
+
+Deux fichiers csv seront crées (ils seront écrasé s'ils existent déjà):   
+```categories.csv```: contient toutes les catégories.  
+```products.csv```: contient tous les produits.  
+
+Pour modifier le nom de ces fichiers vous devez modifier le nom des spiders.
 
 ## 📜 License
 
